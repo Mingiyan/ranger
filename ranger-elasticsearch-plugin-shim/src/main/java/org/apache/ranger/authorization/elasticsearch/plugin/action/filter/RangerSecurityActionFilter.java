@@ -82,4 +82,8 @@ public class RangerSecurityActionFilter implements ActionFilter {
 		}
 		chain.proceed(task, action, request, listener);
 	}
+
+	public Settings getSettings() {
+		return settings;
+	}
 }
