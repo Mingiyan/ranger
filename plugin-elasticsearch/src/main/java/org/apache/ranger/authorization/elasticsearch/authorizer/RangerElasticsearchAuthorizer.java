@@ -30,13 +30,14 @@ import org.apache.ranger.plugin.policyengine.RangerAccessResult;
 import org.apache.ranger.plugin.service.RangerBasePlugin;
 import org.apache.ranger.services.elasticsearch.client.ElasticsearchResourceMgr;
 import org.apache.ranger.services.elasticsearch.privilege.IndexPrivilegeUtils;
-import org.elasticsearch.common.logging.ESLoggerFactory;
+//import org.elasticsearch.common.logging.ESLoggerFactory;
+import org.elasticsearch.common.logging.Loggers;
 
 import com.google.common.collect.Sets;
 
 public class RangerElasticsearchAuthorizer implements RangerElasticsearchAccessControl {
 
-	private static final Logger LOG = ESLoggerFactory.getLogger(RangerElasticsearchAuthorizer.class);
+	private static final Logger LOG = Loggers.getLogger(RangerElasticsearchAuthorizer.class);
 
 	private static volatile RangerElasticsearchInnerPlugin elasticsearchPlugin = null;
 

@@ -23,8 +23,9 @@ import org.apache.ranger.authorization.elasticsearch.plugin.authc.user.UsernameP
 import org.apache.ranger.authorization.elasticsearch.plugin.utils.RequestUtils;
 import org.elasticsearch.ElasticsearchStatusException;
 import org.elasticsearch.client.node.NodeClient;
-import org.elasticsearch.common.component.AbstractComponent;
-import org.elasticsearch.common.logging.ESLoggerFactory;
+//import org.elasticsearch.common.component.AbstractComponent;
+//import org.elasticsearch.common.logging.ESLoggerFactory;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.rest.RestChannel;
@@ -32,19 +33,22 @@ import org.elasticsearch.rest.RestHandler;
 import org.elasticsearch.rest.RestRequest;
 import org.elasticsearch.rest.RestStatus;
 
-public class RangerSecurityRestFilter extends AbstractComponent implements RestHandler {
+public class RangerSecurityRestFilter implements RestHandler {
 
-	private static final Logger LOG = ESLoggerFactory.getLogger(RangerSecurityRestFilter.class);
+	private static final Logger LOG = Loggers.getLogger(RangerSecurityRestFilter.class);
 
 	private final RestHandler restHandler;
 
 	private final ThreadContext threadContext;
 
+	private final Settings settings;
+
 	public RangerSecurityRestFilter(final Settings settings, final ThreadContext threadContext,
 			final RestHandler restHandler) {
-		super(settings);
+//		super(settings);
 		this.restHandler = restHandler;
 		this.threadContext = threadContext;
+		this.settings = settings;
 	}
 
 	@Override

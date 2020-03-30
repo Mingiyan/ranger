@@ -34,7 +34,8 @@ import org.elasticsearch.action.support.ActionFilter;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.io.stream.NamedWriteableRegistry;
-import org.elasticsearch.common.logging.ESLoggerFactory;
+//import org.elasticsearch.common.logging.ESLoggerFactory;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.common.xcontent.NamedXContentRegistry;
@@ -49,7 +50,7 @@ import org.elasticsearch.watcher.ResourceWatcherService;
 
 public class RangerElasticsearchPlugin extends Plugin implements ActionPlugin {
 
-	private static final Logger LOG = ESLoggerFactory.getLogger(RangerElasticsearchPlugin.class);
+	private static final Logger LOG = Loggers.getLogger(RangerElasticsearchPlugin.class);
 
 	private static final String RANGER_ELASTICSEARCH_PLUGIN_CONF_NAME = "ranger-elasticsearch-plugin";
 

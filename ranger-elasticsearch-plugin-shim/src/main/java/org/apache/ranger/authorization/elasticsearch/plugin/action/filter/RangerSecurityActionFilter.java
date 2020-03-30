@@ -30,23 +30,26 @@ import org.elasticsearch.action.ActionRequest;
 import org.elasticsearch.action.ActionResponse;
 import org.elasticsearch.action.support.ActionFilter;
 import org.elasticsearch.action.support.ActionFilterChain;
-import org.elasticsearch.common.component.AbstractComponent;
-import org.elasticsearch.common.logging.ESLoggerFactory;
+//import org.elasticsearch.common.component.AbstractComponent;
+//import org.elasticsearch.common.logging.ESLoggerFactory;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.tasks.Task;
 
-public class RangerSecurityActionFilter extends AbstractComponent implements ActionFilter {
+public class RangerSecurityActionFilter implements ActionFilter {
 
-	private static final Logger LOG = ESLoggerFactory.getLogger(RangerSecurityActionFilter.class);
+	private static final Logger LOG = Loggers.getLogger(RangerSecurityActionFilter.class);
 
 	private final ThreadContext threadContext;
+
+	private final Settings settings;
 
 	private final RangerElasticsearchAuthorizer rangerElasticsearchAuthorizer = new RangerElasticsearchAuthorizer();
 
 	public RangerSecurityActionFilter(Settings settings, ThreadContext threadContext) {
-		super(settings);
+		this.settings = settings;
 		this.threadContext = threadContext;
 	}
 
