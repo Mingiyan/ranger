@@ -17,9 +17,8 @@
 
 package org.apache.ranger.authorization.elasticsearch.plugin.action.filter;
 
-import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.ranger.authorization.elasticsearch.authorizer.RangerElasticsearchAuthorizer;
 import org.apache.ranger.authorization.elasticsearch.plugin.authc.user.UsernamePasswordToken;
@@ -30,17 +29,16 @@ import org.elasticsearch.action.ActionRequest;
 import org.elasticsearch.action.ActionResponse;
 import org.elasticsearch.action.support.ActionFilter;
 import org.elasticsearch.action.support.ActionFilterChain;
-//import org.elasticsearch.common.component.AbstractComponent;
-//import org.elasticsearch.common.logging.ESLoggerFactory;
-import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.tasks.Task;
 
+import java.util.List;
+
 public class RangerSecurityActionFilter implements ActionFilter {
 
-	private static final Logger LOG = Loggers.getLogger(RangerSecurityActionFilter.class);
+	private static final Logger LOG = LogManager.getLogger(RangerSecurityActionFilter.class);
 
 	private final ThreadContext threadContext;
 
@@ -76,8 +74,7 @@ public class RangerSecurityActionFilter implements ActionFilter {
 			}
 		} else {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("User is null, no check permission for elasticsearch do action[{}] with request[{}]", action,
-						request);
+				LOG.debug("User is null, no check permission for elasticsearch do action[{" + action + "}] with request[" + request + "]");
 			}
 		}
 		chain.proceed(task, action, request, listener);

@@ -17,16 +17,7 @@
 
 package org.apache.ranger.authorization.elasticsearch.plugin;
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.file.Path;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.UnaryOperator;
-
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.ranger.authorization.elasticsearch.plugin.action.filter.RangerSecurityActionFilter;
 import org.apache.ranger.authorization.elasticsearch.plugin.rest.filter.RangerSecurityRestFilter;
@@ -34,8 +25,6 @@ import org.elasticsearch.action.support.ActionFilter;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.io.stream.NamedWriteableRegistry;
-//import org.elasticsearch.common.logging.ESLoggerFactory;
-import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.common.xcontent.NamedXContentRegistry;
@@ -48,9 +37,19 @@ import org.elasticsearch.script.ScriptService;
 import org.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.watcher.ResourceWatcherService;
 
+import java.io.File;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.Path;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.UnaryOperator;
+
 public class RangerElasticsearchPlugin extends Plugin implements ActionPlugin {
 
-	private static final Logger LOG = Loggers.getLogger(RangerElasticsearchPlugin.class);
+	private static final Logger LOG = LogManager.getLogger(RangerElasticsearchPlugin.class);
 
 	private static final String RANGER_ELASTICSEARCH_PLUGIN_CONF_NAME = "ranger-elasticsearch-plugin";
 
@@ -109,8 +108,8 @@ public class RangerElasticsearchPlugin extends Plugin implements ActionPlugin {
 					Method method = urlClass.getSuperclass().getDeclaredMethod("addURL", new Class[] { URL.class });
 					method.setAccessible(true);
 					method.invoke(urlClassLoader, new Object[] { configFile.toURI().toURL() });
-					LOG.info("Success to add ranger elasticsearch plugin config directory [{}] to classpath.",
-							configFile.getCanonicalPath());
+					LOG.info("Success to add ranger elasticsearch plugin config directory [{" + configFile.getCanonicalPath()
+									+ "}] to classpath.");
 				}
 			}
 		} catch (Exception e) {

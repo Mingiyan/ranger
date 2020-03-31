@@ -36,7 +36,8 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.ranger.plugin.client.BaseClient;
 import org.apache.ranger.plugin.client.HadoopException;
 
@@ -50,7 +51,7 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 public class ElasticsearchClient extends BaseClient {
 
-	private static final Logger LOG = Logger.getLogger(ElasticsearchClient.class);
+	private static final Logger LOG = LogManager.getLogger(ElasticsearchClient.class);
 
 	private static final String ELASTICSEARCH_INDEX_API_ENDPOINT = "/_all";
 

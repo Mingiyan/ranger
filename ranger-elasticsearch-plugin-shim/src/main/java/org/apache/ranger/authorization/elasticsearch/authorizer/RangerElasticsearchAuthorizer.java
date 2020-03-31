@@ -17,16 +17,15 @@
 
 package org.apache.ranger.authorization.elasticsearch.authorizer;
 
-import java.util.List;
-
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.ranger.plugin.classloader.RangerPluginClassLoader;
-//import org.elasticsearch.common.logging.ESLoggerFactory;
-import org.elasticsearch.common.logging.Loggers;
+
+import java.util.List;
 
 public class RangerElasticsearchAuthorizer {
 
-	private static final Logger LOG = Loggers.getLogger(RangerElasticsearchAuthorizer.class);
+	private static final Logger LOG = LogManager.getLogger(RangerElasticsearchAuthorizer.class);
 
 	private static final String RANGER_PLUGIN_TYPE = "elasticsearch";
 

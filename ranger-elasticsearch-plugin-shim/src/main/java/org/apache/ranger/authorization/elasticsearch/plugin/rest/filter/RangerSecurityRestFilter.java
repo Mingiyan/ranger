@@ -18,14 +18,12 @@
 package org.apache.ranger.authorization.elasticsearch.plugin.rest.filter;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.ranger.authorization.elasticsearch.plugin.authc.user.UsernamePasswordToken;
 import org.apache.ranger.authorization.elasticsearch.plugin.utils.RequestUtils;
 import org.elasticsearch.ElasticsearchStatusException;
 import org.elasticsearch.client.node.NodeClient;
-//import org.elasticsearch.common.component.AbstractComponent;
-//import org.elasticsearch.common.logging.ESLoggerFactory;
-import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.rest.RestChannel;
@@ -35,7 +33,7 @@ import org.elasticsearch.rest.RestStatus;
 
 public class RangerSecurityRestFilter implements RestHandler {
 
-	private static final Logger LOG = Loggers.getLogger(RangerSecurityRestFilter.class);
+	private static final Logger LOG = LogManager.getLogger(RangerSecurityRestFilter.class);
 
 	private final RestHandler restHandler;
 
@@ -62,7 +60,7 @@ public class RangerSecurityRestFilter implements RestHandler {
 					RestStatus.UNAUTHORIZED);
 		} else {
 			if (LOG.isDebugEnabled()) {
-				LOG.debug("Success to parse user[{}] from request[{}].", user, request);
+				LOG.debug("Success to parse user["+ user + "] from request[" + request + "].");
 			}
 		}
 		threadContext.putTransient(UsernamePasswordToken.USERNAME, user.getUsername());
