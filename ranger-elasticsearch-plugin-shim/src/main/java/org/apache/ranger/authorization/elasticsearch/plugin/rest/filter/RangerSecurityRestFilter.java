@@ -43,7 +43,6 @@ public class RangerSecurityRestFilter implements RestHandler {
 
 	public RangerSecurityRestFilter(final Settings settings, final ThreadContext threadContext,
 			final RestHandler restHandler) {
-		// super(settings);
 		this.restHandler = restHandler;
 		this.threadContext = threadContext;
 		this.settings = settings;
